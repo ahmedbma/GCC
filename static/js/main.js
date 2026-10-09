@@ -21,8 +21,8 @@ const PROFESSIONS = {
 // Translations
 const translations = {
     en: {
-        title: "GCC Skills Hub - Uplevel Your Potential",
-        nav_brand: "GCC Skills Hub",
+        title: "Nanhad - Uplevel Your Potential",
+        nav_brand: "Nanhad",
         hero_title: "Unlock Your Potential in the GCC",
         hero_subtitle: "Generate customized learning paths and connect with world-class mentors.",
         form_title: "Generate Custom Course Plan",
@@ -39,8 +39,8 @@ const translations = {
         type_external: "External"
     },
     ar: {
-        title: "منصة مهارات الخليج - ارتقِ بإمكاناتك",
-        nav_brand: "منصة مهارات الخليج",
+        title: "ننهض - ارتقِ بإمكاناتك",
+        nav_brand: "ننهض",
         hero_title: "أطلق العنان لإمكاناتك في دول مجلس التعاون",
         hero_subtitle: "قم بإنشاء مسارات تعليمية مخصصة وتواصل مع موجهين عالميين.",
         form_title: "إنشاء خطة دورة مخصصة",
@@ -203,7 +203,7 @@ function displayCourse(course) {
 
             div.innerHTML = `
                 <h4 class="font-bold text-gray-800">${index + 1}. ${mod.module_name}</h4>
-                <p class="text-xs text-indigo-600 mt-1 font-semibold">${mod.estimated_hours} ${hoursText}</p>
+                <p class="text-xs text-green-600 mt-1 font-semibold">${mod.estimated_hours} ${hoursText}</p>
                 ${topicsHtml}
             `;
             modulesContainer.appendChild(div);
@@ -248,7 +248,7 @@ function loadMentors() {
                 <p class="text-sm text-gray-600">${m.title} | ${m.region}</p>
                 <p class="text-xs text-gray-500 mt-1">Expertise: ${m.expertise.join(', ')}</p>
             </div>
-            <button class="px-4 py-2 bg-indigo-600 text-white rounded text-sm hover:bg-indigo-700">Connect</button>
+            <button class="px-4 py-2 bg-green-600 text-white rounded text-sm hover:bg-green-700">Connect</button>
         `;
         container.appendChild(div);
     });
