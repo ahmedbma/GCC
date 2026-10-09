@@ -41,7 +41,8 @@
                 <form id="course-form" class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700" data-i18n="label_interests">What are your professional interests?</label>
-                        <input type="text" id="interests" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" required>
+                        <input list="professions" id="interests" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" autocomplete="off" required>
+                        <datalist id="professions"></datalist>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700" data-i18n="label_weaknesses">What skills do you want to improve?</label>

@@ -1,5 +1,23 @@
 const GEMINI_API_KEY = "AQ.Ab8RN6KmZrM7ygqSRV4KX6BbPdjXHRM-0KQqll0zqJ-aAd9a_A"; // Actual Gemini API Key
 
+// Common Professions
+const PROFESSIONS = {
+    en: [
+        "Software Engineering", "Data Science", "Product Management", 
+        "Project Management", "Cyber Security", "Cloud Architecture", 
+        "Marketing & Communications", "Financial Analysis", "Human Resources", 
+        "Operations Management", "UI/UX Design", "Business Analysis", 
+        "Sales & Business Development"
+    ],
+    ar: [
+        "هندسة البرمجيات", "علوم البيانات", "إدارة المنتجات",
+        "إدارة المشاريع", "الأمن السيبراني", "هندسة السحابة",
+        "التسويق والاتصالات", "التحليل المالي", "الموارد البشرية",
+        "إدارة العمليات", "تصميم واجهة وتجربة المستخدم", "تحليل الأعمال",
+        "المبيعات وتطوير الأعمال"
+    ]
+};
+
 // Translations
 const translations = {
     en: {
@@ -55,12 +73,25 @@ function applyTranslations(lang) {
 
     if (lang === 'ar') {
         document.body.classList.add('font-arabic');
+        document.getElementById('interests').placeholder = "اختر أو اكتب مهنة...";
     } else {
         document.body.classList.remove('font-arabic');
+        document.getElementById('interests').placeholder = "Select or type a profession...";
     }
+
+    // Populate Datalist
+    const datalist = document.getElementById('professions');
+    datalist.innerHTML = '';
+    PROFESSIONS[lang].forEach(prof => {
+        const option = document.createElement('option');
+        option.value = prof;
+        datalist.appendChild(option);
+    });
 }
 
 document.getElementById('lang-toggle').addEventListener('click', () => {
+    // Clear input so translation swap doesn't keep old language text
+    document.getElementById('interests').value = '';
     currentLang = currentLang === 'en' ? 'ar' : 'en';
     applyTranslations(currentLang);
     loadMentors(); // Reload to translate UI bits
@@ -181,19 +212,30 @@ function displayCourse(course) {
 }
 
 // Mentors logic
-const MENTORS = [
-    { id: 1, name: "Ahmad Al-Farsi", title: "Senior Data Scientist", type: "Internal", expertise: ["Machine Learning", "Python"], region: "GCC" },
-    { id: 2, name: "Sarah Jenkins", title: "Principal Product Manager", type: "External", expertise: ["Product Strategy", "Agile"], region: "USA" },
-    { id: 3, name: "Dr. Thomas Miller", title: "Engineering Director", type: "External", expertise: ["System Architecture", "Leadership"], region: "UK" },
-    { id: 4, name: "Fatima Al-Sayed", title: "VP of Operations", type: "Internal", expertise: ["Operations", "Process Improvement"], region: "GCC" },
-    { id: 5, name: "Michael Chang", title: "Lead Security Engineer", type: "External", expertise: ["Cybersecurity", "Cloud Architecture"], region: "USA" }
-];
+const MENTORS = {
+    en: [
+        { id: 1, name: "Ahmad Al-Farsi", title: "Senior Data Scientist", type: "Internal", expertise: ["Data Science", "Business Analysis"], region: "GCC" },
+        { id: 2, name: "Sarah Jenkins", title: "Principal Product Manager", type: "External", expertise: ["Product Management", "UI/UX Design"], region: "USA" },
+        { id: 3, name: "Dr. Thomas Miller", title: "Engineering Director", type: "External", expertise: ["Software Engineering", "Cloud Architecture"], region: "UK" },
+        { id: 4, name: "Fatima Al-Sayed", title: "VP of Operations", type: "Internal", expertise: ["Operations Management", "Project Management"], region: "GCC" },
+        { id: 5, name: "Michael Chang", title: "Lead Security Engineer", type: "External", expertise: ["Cyber Security", "Cloud Architecture"], region: "USA" },
+        { id: 6, name: "Nour Al-Huda", title: "Marketing Director", type: "Internal", expertise: ["Marketing & Communications", "Sales & Business Development"], region: "GCC" }
+    ],
+    ar: [
+        { id: 1, name: "أحمد الفارسي", title: "عالم بيانات أول", type: "Internal", expertise: ["علوم البيانات", "تحليل الأعمال"], region: "GCC" },
+        { id: 2, name: "سارة جينكينز", title: "مدير منتجات رئيسي", type: "External", expertise: ["إدارة المنتجات", "تصميم واجهة وتجربة المستخدم"], region: "USA" },
+        { id: 3, name: "د. توماس ميلر", title: "مدير هندسي", type: "External", expertise: ["هندسة البرمجيات", "هندسة السحابة"], region: "UK" },
+        { id: 4, name: "فاطمة السيد", title: "نائب رئيس العمليات", type: "Internal", expertise: ["إدارة العمليات", "إدارة المشاريع"], region: "GCC" },
+        { id: 5, name: "مايكل تشانغ", title: "كبير مهندسي الأمن", type: "External", expertise: ["الأمن السيبراني", "هندسة السحابة"], region: "USA" },
+        { id: 6, name: "نور الهدى", title: "مديرة التسويق", type: "Internal", expertise: ["التسويق والاتصالات", "المبيعات وتطوير الأعمال"], region: "GCC" }
+    ]
+};
 
 function loadMentors() {
     const container = document.getElementById('mentors-list');
     container.innerHTML = '';
     
-    MENTORS.forEach(m => {
+    MENTORS[currentLang].forEach(m => {
         const typeText = m.type === 'Internal' ? translations[currentLang].type_internal : translations[currentLang].type_external;
         const typeClass = m.type === 'Internal' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800';
         
