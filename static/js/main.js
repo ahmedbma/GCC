@@ -1,3 +1,5 @@
+const GEMINI_API_KEY = "YOUR_API_KEY_HERE"; // Replace with your actual Gemini API Key
+
 // Translations
 const translations = {
     en: {
@@ -14,7 +16,7 @@ const translations = {
         btn_refresh: "Refresh List",
         mentors_desc: "Connect with internal experts and global leaders (USA, UK, etc.)",
         module_hours: "hours",
-        error_msg: "An error occurred. Please make sure the Gemini API key is configured.",
+        error_msg: "An error occurred. Please check your Gemini API key and try again.",
         type_internal: "Internal",
         type_external: "External"
     },
@@ -32,7 +34,7 @@ const translations = {
         btn_refresh: "تحديث القائمة",
         mentors_desc: "تواصل مع الخبراء الداخليين والقادة العالميين (أمريكا، بريطانيا، إلخ)",
         module_hours: "ساعات",
-        error_msg: "حدث خطأ. يرجى التأكد من تكوين مفتاح API الخاص بـ Gemini.",
+        error_msg: "حدث خطأ. يرجى التحقق من مفتاح API الخاص بـ Gemini والمحاولة مرة أخرى.",
         type_internal: "داخلي",
         type_external: "خارجي"
     }
@@ -83,19 +85,60 @@ document.getElementById('course-form').addEventListener('submit', async (e) => {
     spinner.classList.remove('hidden');
     
     try {
-        const res = await fetch('/api/generate_courses', {
+        let promptText = `
+        You are an expert career coach and curriculum designer. 
+        A professional in the GCC region has the following profile:
+        - Interests: ${interests}
+        - Weaknesses to improve: ${weaknesses}
+        - Career Goals: ${goals}
+        
+        Create a custom, step-by-step course plan to help them uplevel their skills.
+        Provide the response as a valid JSON object with the following structure:
+        {
+            "title": "Name of the Custom Learning Path",
+            "description": "Short description of the path",
+            "modules": [
+                {
+                    "module_name": "Name of module",
+                    "topics": ["Topic 1", "Topic 2"],
+                    "estimated_hours": 10
+                }
+            ]
+        }
+        
+        IMPORTANT: Provide the content strictly in JSON format. Do not use markdown wrappers like \`\`\`json.
+        `;
+
+        if (currentLang === 'ar') {
+            promptText += " Ensure the content inside the JSON values is entirely translated to Arabic.";
+        }
+
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ interests, weaknesses, goals, language: currentLang })
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{ text: promptText }]
+                }]
+            })
         });
         
-        const data = await res.json();
-        
-        if (data.success) {
-            displayCourse(data.course);
-        } else {
-            alert(data.error || translations[currentLang].error_msg);
+        if (!res.ok) {
+            throw new Error(`API Error: ${res.status}`);
         }
+
+        const data = await res.json();
+        const textResponse = data.candidates[0].content.parts[0].text;
+        
+        // Clean JSON formatting from Gemini if any
+        let cleanJson = textResponse.trim();
+        if (cleanJson.startsWith('```json')) cleanJson = cleanJson.substring(7);
+        if (cleanJson.startsWith('```')) cleanJson = cleanJson.substring(3);
+        if (cleanJson.endsWith('```')) cleanJson = cleanJson.substring(0, cleanJson.length - 3);
+
+        const course = JSON.parse(cleanJson);
+        displayCourse(course);
+
     } catch (err) {
         alert(translations[currentLang].error_msg);
         console.error(err);
@@ -138,36 +181,35 @@ function displayCourse(course) {
 }
 
 // Mentors logic
-async function loadMentors() {
-    try {
-        const res = await fetch('/api/mentors');
-        const data = await res.json();
+const MENTORS = [
+    { id: 1, name: "Ahmad Al-Farsi", title: "Senior Data Scientist", type: "Internal", expertise: ["Machine Learning", "Python"], region: "GCC" },
+    { id: 2, name: "Sarah Jenkins", title: "Principal Product Manager", type: "External", expertise: ["Product Strategy", "Agile"], region: "USA" },
+    { id: 3, name: "Dr. Thomas Miller", title: "Engineering Director", type: "External", expertise: ["System Architecture", "Leadership"], region: "UK" },
+    { id: 4, name: "Fatima Al-Sayed", title: "VP of Operations", type: "Internal", expertise: ["Operations", "Process Improvement"], region: "GCC" },
+    { id: 5, name: "Michael Chang", title: "Lead Security Engineer", type: "External", expertise: ["Cybersecurity", "Cloud Architecture"], region: "USA" }
+];
+
+function loadMentors() {
+    const container = document.getElementById('mentors-list');
+    container.innerHTML = '';
+    
+    MENTORS.forEach(m => {
+        const typeText = m.type === 'Internal' ? translations[currentLang].type_internal : translations[currentLang].type_external;
+        const typeClass = m.type === 'Internal' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800';
         
-        if (data.success) {
-            const container = document.getElementById('mentors-list');
-            container.innerHTML = '';
-            
-            data.mentors.forEach(m => {
-                const typeText = m.type === 'Internal' ? translations[currentLang].type_internal : translations[currentLang].type_external;
-                const typeClass = m.type === 'Internal' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800';
-                
-                const div = document.createElement('div');
-                div.className = 'flex items-center justify-between p-4 border rounded hover:bg-gray-50 transition';
-                
-                div.innerHTML = `
-                    <div>
-                        <h4 class="font-bold text-gray-900">${m.name} <span class="text-xs font-normal ml-2 mr-2 px-2 py-0.5 rounded ${typeClass}">${typeText}</span></h4>
-                        <p class="text-sm text-gray-600">${m.title} | ${m.region}</p>
-                        <p class="text-xs text-gray-500 mt-1">Expertise: ${m.expertise.join(', ')}</p>
-                    </div>
-                    <button class="px-4 py-2 bg-indigo-600 text-white rounded text-sm hover:bg-indigo-700">Connect</button>
-                `;
-                container.appendChild(div);
-            });
-        }
-    } catch (err) {
-        console.error(err);
-    }
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between p-4 border rounded hover:bg-gray-50 transition';
+        
+        div.innerHTML = `
+            <div>
+                <h4 class="font-bold text-gray-900">${m.name} <span class="text-xs font-normal ml-2 mr-2 px-2 py-0.5 rounded ${typeClass}">${typeText}</span></h4>
+                <p class="text-sm text-gray-600">${m.title} | ${m.region}</p>
+                <p class="text-xs text-gray-500 mt-1">Expertise: ${m.expertise.join(', ')}</p>
+            </div>
+            <button class="px-4 py-2 bg-indigo-600 text-white rounded text-sm hover:bg-indigo-700">Connect</button>
+        `;
+        container.appendChild(div);
+    });
 }
 
 document.getElementById('load-mentors').addEventListener('click', loadMentors);
