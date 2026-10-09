@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title">GCC Skills Hub - Uplevel Your Potential</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased" dir="ltr">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-blue-600" data-i18n="nav_brand">GCC Skills Hub</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="lang-toggle" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition text-sm">عربي / English</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        <!-- Header Section -->
+        <section class="text-center bg-white p-8 rounded-lg shadow">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4" data-i18n="hero_title">Unlock Your Potential in the GCC</h1>
+            <p class="text-lg text-gray-600" data-i18n="hero_subtitle">Generate customized learning paths and connect with world-class mentors.</p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Left Column: Custom Course Generator -->
+            <section class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-bold mb-4 border-b pb-2" data-i18n="form_title">Generate Custom Course Plan</h2>
+                <form id="course-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="label_interests">What are your professional interests?</label>
+                        <input type="text" id="interests" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="label_weaknesses">What skills do you want to improve?</label>
+                        <input type="text" id="weaknesses" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="label_goals">What are your career goals?</label>
+                        <textarea id="goals" rows="3" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition font-semibold flex justify-center items-center">
+                        <span id="btn-text" data-i18n="btn_generate">Generate Plan</span>
+                        <svg id="loading-spinner" class="animate-spin ml-2 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </button>
+                </form>
+
+                <div id="course-result" class="mt-6 hidden">
+                    <h3 class="text-xl font-bold text-green-600 mb-2" id="course-title"></h3>
+                    <p class="text-gray-700 mb-4" id="course-desc"></p>
+                    <div id="course-modules" class="space-y-3"></div>
+                </div>
+            </section>
+
+            <!-- Right Column: Mentorship Platform -->
+            <section class="bg-white p-6 rounded-lg shadow">
+                <div class="flex justify-between items-center mb-4 border-b pb-2">
+                    <h2 class="text-2xl font-bold" data-i18n="mentors_title">Find Mentors & SMEs</h2>
+                    <button id="load-mentors" class="text-sm bg-indigo-100 text-indigo-700 px-3 py-1 rounded hover:bg-indigo-200 transition" data-i18n="btn_refresh">Refresh List</button>
+                </div>
+                <p class="text-sm text-gray-500 mb-4" data-i18n="mentors_desc">Connect with internal experts and global leaders (USA, UK, etc.)</p>
+                
+                <div id="mentors-list" class="space-y-4">
+                    <!-- Mentors will be populated here -->
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
