@@ -1,20 +1,38 @@
 const GEMINI_API_KEY = "AQ.Ab8RN6KmZrM7ygqSRV4KX6BbPdjXHRM-0KQqll0zqJ-aAd9a_A"; // Actual Gemini API Key
 
-// Common Professions
+// Common Professions (Expanded)
 const PROFESSIONS = {
     en: [
-        "Software Engineering", "Data Science", "Product Management", 
-        "Project Management", "Cyber Security", "Cloud Architecture", 
-        "Marketing & Communications", "Financial Analysis", "Human Resources", 
-        "Operations Management", "UI/UX Design", "Business Analysis", 
-        "Sales & Business Development"
+        "Software Engineering", "Data Science", "Product Management", "Project Management", 
+        "Cyber Security", "Cloud Architecture", "Marketing & Communications", "Financial Analysis", 
+        "Human Resources", "Operations Management", "UI/UX Design", "Business Analysis", 
+        "Sales & Business Development", "Accounting", "Investment Banking", "Mechanical Engineering", 
+        "Civil Engineering", "Electrical Engineering", "Architecture", "Medicine", 
+        "Nursing", "Pharmacy", "Dentistry", "Healthcare Administration", "Law", 
+        "Teaching & Education", "Academia", "Graphic Design", "Copywriting", "Content Creation", 
+        "Public Relations", "Event Management", "Supply Chain & Logistics", "Quality Assurance", 
+        "IT Support", "Database Administration", "Artificial Intelligence", "Blockchain Engineering", 
+        "Real Estate", "Hospitality Management", "Retail Management", "Customer Success", 
+        "Entrepreneurship", "Venture Capital", "Data Analytics", "DevOps Engineering", 
+        "Network Engineering", "Systems Administration", "E-commerce", "Digital Marketing", 
+        "SEO Specialization", "Video Production", "Journalism", "Translation & Localization", 
+        "Game Development"
     ],
     ar: [
-        "هندسة البرمجيات", "علوم البيانات", "إدارة المنتجات",
-        "إدارة المشاريع", "الأمن السيبراني", "هندسة السحابة",
-        "التسويق والاتصالات", "التحليل المالي", "الموارد البشرية",
-        "إدارة العمليات", "تصميم واجهة وتجربة المستخدم", "تحليل الأعمال",
-        "المبيعات وتطوير الأعمال"
+        "هندسة البرمجيات", "علوم البيانات", "إدارة المنتجات", "إدارة المشاريع", 
+        "الأمن السيبراني", "هندسة السحابة", "التسويق والاتصالات", "التحليل المالي", 
+        "الموارد البشرية", "إدارة العمليات", "تصميم واجهة وتجربة المستخدم", "تحليل الأعمال", 
+        "المبيعات وتطوير الأعمال", "المحاسبة", "الصيرفة الاستثمارية", "الهندسة الميكانيكية", 
+        "الهندسة المدنية", "الهندسة الكهربائية", "الهندسة المعمارية", "الطب", 
+        "التمريض", "الصيدلة", "طب الأسنان", "إدارة الرعاية الصحية", "المحاماة", 
+        "التدريس والتعليم", "الأوساط الأكاديمية", "التصميم الجرافيكي", "كتابة الإعلانات", "صناعة المحتوى", 
+        "العلاقات العامة", "إدارة الفعاليات", "سلسلة التوريد والخدمات اللوجستية", "ضمان الجودة", 
+        "دعم تكنولوجيا المعلومات", "إدارة قواعد البيانات", "الذكاء الاصطناعي", "هندسة البلوك تشين", 
+        "العقارات", "إدارة الضيافة", "إدارة التجزئة", "نجاح العملاء", 
+        "ريادة الأعمال", "رأس المال الاستثماري", "تحليل البيانات", "هندسة ديف أوبس", 
+        "هندسة الشبكات", "إدارة النظم", "التجارة الإلكترونية", "التسويق الرقمي", 
+        "تحسين محركات البحث", "إنتاج الفيديو", "الصحافة", "الترجمة والتعريب", 
+        "تطوير الألعاب"
     ]
 };
 
@@ -26,7 +44,7 @@ const translations = {
         hero_title: "Unlock Your Potential in the GCC",
         hero_subtitle: "Generate customized learning paths and connect with world-class mentors.",
         form_title: "Generate Custom Course Plan",
-        label_interests: "What are your professional interests?",
+        label_interests: "What is your profession?",
         label_weaknesses: "What skills do you want to improve?",
         label_goals: "What are your career goals?",
         btn_generate: "Generate Plan",
@@ -44,7 +62,7 @@ const translations = {
         hero_title: "أطلق العنان لإمكاناتك في دول مجلس التعاون",
         hero_subtitle: "قم بإنشاء مسارات تعليمية مخصصة وتواصل مع موجهين عالميين.",
         form_title: "إنشاء خطة دورة مخصصة",
-        label_interests: "ما هي اهتماماتك المهنية؟",
+        label_interests: "ما هي مهنتك؟",
         label_weaknesses: "ما هي المهارات التي ترغب في تحسينها؟",
         label_goals: "ما هي أهدافك المهنية؟",
         btn_generate: "إنشاء الخطة",
@@ -56,6 +74,42 @@ const translations = {
         type_internal: "داخلي",
         type_external: "خارجي"
     }
+};
+
+// Mentors logic
+const MENTORS = {
+    en: [
+        { id: 1, name: "Ahmad Al-Farsi", title: "Senior Data Scientist", type: "Internal", expertise: ["Data Science", "Artificial Intelligence"], region: "GCC" },
+        { id: 2, name: "Sarah Jenkins", title: "Principal Product Manager", type: "External", expertise: ["Product Management", "UI/UX Design"], region: "USA" },
+        { id: 3, name: "Dr. Thomas Miller", title: "Engineering Director", type: "External", expertise: ["Software Engineering", "Cloud Architecture"], region: "UK" },
+        { id: 4, name: "Fatima Al-Sayed", title: "VP of Operations", type: "Internal", expertise: ["Operations Management", "Supply Chain & Logistics"], region: "GCC" },
+        { id: 5, name: "Michael Chang", title: "Lead Security Engineer", type: "External", expertise: ["Cyber Security", "DevOps Engineering"], region: "USA" },
+        { id: 6, name: "Nour Al-Huda", title: "Marketing Director", type: "Internal", expertise: ["Digital Marketing", "Public Relations"], region: "GCC" },
+        { id: 7, name: "David O'Connor", title: "Chief Financial Officer", type: "External", expertise: ["Financial Analysis", "Investment Banking"], region: "UK" },
+        { id: 8, name: "Leila Mansour", title: "Head of HR", type: "Internal", expertise: ["Human Resources", "Customer Success"], region: "GCC" },
+        { id: 9, name: "James Wilson", title: "Senior Architect", type: "External", expertise: ["Architecture", "Civil Engineering"], region: "USA" },
+        { id: 10, name: "Dr. Amira Tariq", title: "Chief Medical Officer", type: "Internal", expertise: ["Medicine", "Healthcare Administration"], region: "GCC" },
+        { id: 11, name: "Kenji Sato", title: "Blockchain Architect", type: "External", expertise: ["Blockchain Engineering", "Software Engineering"], region: "Japan" },
+        { id: 12, name: "Omar Rashid", title: "E-commerce Director", type: "Internal", expertise: ["E-commerce", "Retail Management"], region: "GCC" },
+        { id: 13, name: "Sophia Martinez", title: "Creative Director", type: "External", expertise: ["Graphic Design", "Content Creation"], region: "USA" },
+        { id: 14, name: "Ali Hassan", title: "Lead Legal Counsel", type: "Internal", expertise: ["Law", "Business Analysis"], region: "GCC" }
+    ],
+    ar: [
+        { id: 1, name: "أحمد الفارسي", title: "عالم بيانات أول", type: "Internal", expertise: ["علوم البيانات", "الذكاء الاصطناعي"], region: "GCC" },
+        { id: 2, name: "سارة جينكينز", title: "مدير منتجات رئيسي", type: "External", expertise: ["إدارة المنتجات", "تصميم واجهة وتجربة المستخدم"], region: "USA" },
+        { id: 3, name: "د. توماس ميلر", title: "مدير هندسي", type: "External", expertise: ["هندسة البرمجيات", "هندسة السحابة"], region: "UK" },
+        { id: 4, name: "فاطمة السيد", title: "نائب رئيس العمليات", type: "Internal", expertise: ["إدارة العمليات", "سلسلة التوريد والخدمات اللوجستية"], region: "GCC" },
+        { id: 5, name: "مايكل تشانغ", title: "كبير مهندسي الأمن", type: "External", expertise: ["الأمن السيبراني", "هندسة ديف أوبس"], region: "USA" },
+        { id: 6, name: "نور الهدى", title: "مديرة التسويق", type: "Internal", expertise: ["التسويق الرقمي", "العلاقات العامة"], region: "GCC" },
+        { id: 7, name: "ديفيد أوكونور", title: "المدير المالي", type: "External", expertise: ["التحليل المالي", "الصيرفة الاستثمارية"], region: "UK" },
+        { id: 8, name: "ليلى منصور", title: "رئيسة الموارد البشرية", type: "Internal", expertise: ["الموارد البشرية", "نجاح العملاء"], region: "GCC" },
+        { id: 9, name: "جيمس ويلسون", title: "كبير المهندسين المعماريين", type: "External", expertise: ["الهندسة المعمارية", "الهندسة المدنية"], region: "USA" },
+        { id: 10, name: "د. أميرة طارق", title: "المدير الطبي التنفيذي", type: "Internal", expertise: ["الطب", "إدارة الرعاية الصحية"], region: "GCC" },
+        { id: 11, name: "كينجي ساتو", title: "مهندس بلوك تشين", type: "External", expertise: ["هندسة البلوك تشين", "هندسة البرمجيات"], region: "Japan" },
+        { id: 12, name: "عمر راشد", title: "مدير التجارة الإلكترونية", type: "Internal", expertise: ["التجارة الإلكترونية", "إدارة التجزئة"], region: "GCC" },
+        { id: 13, name: "صوفيا مارتينيز", title: "المديرة الإبداعية", type: "External", expertise: ["التصميم الجرافيكي", "صناعة المحتوى"], region: "USA" },
+        { id: 14, name: "علي حسن", title: "المستشار القانوني الرئيسي", type: "Internal", expertise: ["المحاماة", "تحليل الأعمال"], region: "GCC" }
+    ]
 };
 
 let currentLang = 'en';
@@ -119,7 +173,7 @@ document.getElementById('course-form').addEventListener('submit', async (e) => {
         let promptText = `
         You are an expert career coach and curriculum designer. 
         A professional in the GCC region has the following profile:
-        - Interests: ${interests}
+        - Profession: ${interests}
         - Weaknesses to improve: ${weaknesses}
         - Career Goals: ${goals}
         
@@ -211,33 +265,17 @@ function displayCourse(course) {
     }
 }
 
-// Mentors logic
-const MENTORS = {
-    en: [
-        { id: 1, name: "Ahmad Al-Farsi", title: "Senior Data Scientist", type: "Internal", expertise: ["Data Science", "Business Analysis"], region: "GCC" },
-        { id: 2, name: "Sarah Jenkins", title: "Principal Product Manager", type: "External", expertise: ["Product Management", "UI/UX Design"], region: "USA" },
-        { id: 3, name: "Dr. Thomas Miller", title: "Engineering Director", type: "External", expertise: ["Software Engineering", "Cloud Architecture"], region: "UK" },
-        { id: 4, name: "Fatima Al-Sayed", title: "VP of Operations", type: "Internal", expertise: ["Operations Management", "Project Management"], region: "GCC" },
-        { id: 5, name: "Michael Chang", title: "Lead Security Engineer", type: "External", expertise: ["Cyber Security", "Cloud Architecture"], region: "USA" },
-        { id: 6, name: "Nour Al-Huda", title: "Marketing Director", type: "Internal", expertise: ["Marketing & Communications", "Sales & Business Development"], region: "GCC" }
-    ],
-    ar: [
-        { id: 1, name: "أحمد الفارسي", title: "عالم بيانات أول", type: "Internal", expertise: ["علوم البيانات", "تحليل الأعمال"], region: "GCC" },
-        { id: 2, name: "سارة جينكينز", title: "مدير منتجات رئيسي", type: "External", expertise: ["إدارة المنتجات", "تصميم واجهة وتجربة المستخدم"], region: "USA" },
-        { id: 3, name: "د. توماس ميلر", title: "مدير هندسي", type: "External", expertise: ["هندسة البرمجيات", "هندسة السحابة"], region: "UK" },
-        { id: 4, name: "فاطمة السيد", title: "نائب رئيس العمليات", type: "Internal", expertise: ["إدارة العمليات", "إدارة المشاريع"], region: "GCC" },
-        { id: 5, name: "مايكل تشانغ", title: "كبير مهندسي الأمن", type: "External", expertise: ["الأمن السيبراني", "هندسة السحابة"], region: "USA" },
-        { id: 6, name: "نور الهدى", title: "مديرة التسويق", type: "Internal", expertise: ["التسويق والاتصالات", "المبيعات وتطوير الأعمال"], region: "GCC" }
-    ]
-};
-
 function loadMentors() {
     const container = document.getElementById('mentors-list');
     container.innerHTML = '';
     
-    MENTORS[currentLang].forEach(m => {
+    // Shuffle mentors for variety when refresh is clicked, but always take 6 at random
+    const shuffled = [...MENTORS[currentLang]].sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, 6);
+    
+    selected.forEach(m => {
         const typeText = m.type === 'Internal' ? translations[currentLang].type_internal : translations[currentLang].type_external;
-        const typeClass = m.type === 'Internal' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800';
+        const typeClass = m.type === 'Internal' ? 'bg-green-100 text-green-800' : 'bg-emerald-100 text-emerald-800';
         
         const div = document.createElement('div');
         div.className = 'flex items-center justify-between p-4 border rounded hover:bg-gray-50 transition';
