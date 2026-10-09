@@ -1,4 +1,4 @@
-const GEMINI_API_KEY = "YOUR_API_KEY_HERE"; // Replace with your actual Gemini API Key
+const GEMINI_API_KEY = "AQ.Ab8RN6KmZrM7ygqSRV4KX6BbPdjXHRM-0KQqll0zqJ-aAd9a_A"; // Actual Gemini API Key
 
 // Translations
 const translations = {
