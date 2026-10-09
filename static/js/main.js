@@ -265,13 +265,36 @@ function displayCourse(course) {
     }
 }
 
-function loadMentors() {
+function loadMentors(filterText = '') {
     const container = document.getElementById('mentors-list');
     container.innerHTML = '';
     
-    // Shuffle mentors for variety when refresh is clicked, but always take 6 at random
-    const shuffled = [...MENTORS[currentLang]].sort(() => 0.5 - Math.random());
+    let availableMentors = [...MENTORS[currentLang]];
+    let isFallback = false;
+    
+    if (filterText && filterText.trim() !== '') {
+        const lowerFilter = filterText.trim().toLowerCase();
+        const filtered = availableMentors.filter(m => 
+            m.expertise.some(exp => exp.toLowerCase().includes(lowerFilter)) ||
+            m.title.toLowerCase().includes(lowerFilter)
+        );
+        if (filtered.length > 0) {
+            availableMentors = filtered;
+        } else {
+            isFallback = true;
+        }
+    }
+    
+    // Shuffle mentors for variety, take up to 6
+    const shuffled = availableMentors.sort(() => 0.5 - Math.random());
     const selected = shuffled.slice(0, 6);
+    
+    if (isFallback) {
+        const fallbackMsg = document.createElement('p');
+        fallbackMsg.className = 'text-xs text-orange-600 mb-3 italic';
+        fallbackMsg.textContent = currentLang === 'en' ? 'No exact match found. Here are some other experts:' : 'لم يتم العثور على تطابق تام. إليك بعض الخبراء الآخرين:';
+        container.appendChild(fallbackMsg);
+    }
     
     selected.forEach(m => {
         const typeText = m.type === 'Internal' ? translations[currentLang].type_internal : translations[currentLang].type_external;
@@ -292,7 +315,15 @@ function loadMentors() {
     });
 }
 
-document.getElementById('load-mentors').addEventListener('click', loadMentors);
+// Filter mentors when the profession input changes
+document.getElementById('interests').addEventListener('input', (e) => {
+    loadMentors(e.target.value);
+});
+
+// Refresh button respects the current filter
+document.getElementById('load-mentors').addEventListener('click', () => {
+    loadMentors(document.getElementById('interests').value);
+});
 
 // Initial load
 loadMentors();
