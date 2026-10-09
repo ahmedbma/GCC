@@ -30,7 +30,7 @@ const translations = {
         label_weaknesses: "What skills do you want to improve?",
         label_goals: "What are your career goals?",
         btn_generate: "Generate Plan",
-        mentors_title: "Find Mentors & SMEs",
+        mentors_title: "Find Mentors & Experts",
         btn_refresh: "Refresh List",
         mentors_desc: "Connect with internal experts and global leaders (USA, UK, etc.)",
         module_hours: "hours",
