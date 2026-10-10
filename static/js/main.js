@@ -80,36 +80,36 @@ const translations = {
 // Mentors logic
 const MENTORS = {
     en: [
-        { id: 1, name: "Ahmad Al-Farsi", title: "Senior Data Scientist", type: "Internal", expertise: ["Data Science", "Artificial Intelligence"], region: "GCC" },
-        { id: 2, name: "Sarah Jenkins", title: "Principal Product Manager", type: "External", expertise: ["Product Management", "UI/UX Design"], region: "USA" },
-        { id: 3, name: "Dr. Thomas Miller", title: "Engineering Director", type: "External", expertise: ["Software Engineering", "Cloud Architecture"], region: "UK" },
-        { id: 4, name: "Fatima Al-Sayed", title: "VP of Operations", type: "Internal", expertise: ["Operations Management", "Supply Chain & Logistics"], region: "GCC" },
-        { id: 5, name: "Michael Chang", title: "Lead Security Engineer", type: "External", expertise: ["Cyber Security", "DevOps Engineering"], region: "USA" },
-        { id: 6, name: "Nour Al-Huda", title: "Marketing Director", type: "Internal", expertise: ["Digital Marketing", "Public Relations"], region: "GCC" },
-        { id: 7, name: "David O'Connor", title: "Chief Financial Officer", type: "External", expertise: ["Financial Analysis", "Investment Banking"], region: "UK" },
-        { id: 8, name: "Leila Mansour", title: "Head of HR", type: "Internal", expertise: ["Human Resources", "Customer Success"], region: "GCC" },
-        { id: 9, name: "James Wilson", title: "Senior Architect", type: "External", expertise: ["Architecture", "Civil Engineering"], region: "USA" },
-        { id: 10, name: "Dr. Amira Tariq", title: "Chief Medical Officer", type: "Internal", expertise: ["Medicine", "Healthcare Administration"], region: "GCC" },
-        { id: 11, name: "Kenji Sato", title: "Blockchain Architect", type: "External", expertise: ["Blockchain Engineering", "Software Engineering"], region: "Japan" },
-        { id: 12, name: "Omar Rashid", title: "E-commerce Director", type: "Internal", expertise: ["E-commerce", "Retail Management"], region: "GCC" },
-        { id: 13, name: "Sophia Martinez", title: "Creative Director", type: "External", expertise: ["Graphic Design", "Content Creation"], region: "USA" },
-        { id: 14, name: "Ali Hassan", title: "Lead Legal Counsel", type: "Internal", expertise: ["Law", "Business Analysis"], region: "GCC" }
+        { id: 1, name: "Ahmad Al-Farsi", title: "Senior Data Scientist", type: "Internal", expertise: ["Data Science", "Artificial Intelligence"], region: "GCC", image: "https://randomuser.me/api/portraits/men/32.jpg" },
+        { id: 2, name: "Sarah Jenkins", title: "Principal Product Manager", type: "External", expertise: ["Product Management", "UI/UX Design"], region: "USA", image: "https://randomuser.me/api/portraits/women/44.jpg" },
+        { id: 3, name: "Dr. Thomas Miller", title: "Engineering Director", type: "External", expertise: ["Software Engineering", "Cloud Architecture"], region: "UK", image: "https://randomuser.me/api/portraits/men/78.jpg" },
+        { id: 4, name: "Fatima Al-Sayed", title: "VP of Operations", type: "Internal", expertise: ["Operations Management", "Supply Chain & Logistics"], region: "GCC", image: "https://randomuser.me/api/portraits/women/68.jpg" },
+        { id: 5, name: "Michael Chang", title: "Lead Security Engineer", type: "External", expertise: ["Cyber Security", "DevOps Engineering"], region: "USA", image: "https://randomuser.me/api/portraits/men/55.jpg" },
+        { id: 6, name: "Nour Al-Huda", title: "Marketing Director", type: "Internal", expertise: ["Digital Marketing", "Public Relations"], region: "GCC", image: "https://randomuser.me/api/portraits/women/24.jpg" },
+        { id: 7, name: "David O'Connor", title: "Chief Financial Officer", type: "External", expertise: ["Financial Analysis", "Investment Banking"], region: "UK", image: "https://randomuser.me/api/portraits/men/15.jpg" },
+        { id: 8, name: "Leila Mansour", title: "Head of HR", type: "Internal", expertise: ["Human Resources", "Customer Success"], region: "GCC", image: "https://randomuser.me/api/portraits/women/33.jpg" },
+        { id: 9, name: "James Wilson", title: "Senior Architect", type: "External", expertise: ["Architecture", "Civil Engineering"], region: "USA", image: "https://randomuser.me/api/portraits/men/41.jpg" },
+        { id: 10, name: "Dr. Amira Tariq", title: "Chief Medical Officer", type: "Internal", expertise: ["Medicine", "Healthcare Administration"], region: "GCC", image: "https://randomuser.me/api/portraits/women/59.jpg" },
+        { id: 11, name: "Kenji Sato", title: "Blockchain Architect", type: "External", expertise: ["Blockchain Engineering", "Software Engineering"], region: "Japan", image: "https://randomuser.me/api/portraits/men/60.jpg" },
+        { id: 12, name: "Omar Rashid", title: "E-commerce Director", type: "Internal", expertise: ["E-commerce", "Retail Management"], region: "GCC", image: "https://randomuser.me/api/portraits/men/22.jpg" },
+        { id: 13, name: "Sophia Martinez", title: "Creative Director", type: "External", expertise: ["Graphic Design", "Content Creation"], region: "USA", image: "https://randomuser.me/api/portraits/women/12.jpg" },
+        { id: 14, name: "Ali Hassan", title: "Lead Legal Counsel", type: "Internal", expertise: ["Law", "Business Analysis"], region: "GCC", image: "https://randomuser.me/api/portraits/men/82.jpg" }
     ],
     ar: [
-        { id: 1, name: "أحمد الفارسي", title: "عالم بيانات أول", type: "Internal", expertise: ["علوم البيانات", "الذكاء الاصطناعي"], region: "GCC" },
-        { id: 2, name: "سارة جينكينز", title: "مدير منتجات رئيسي", type: "External", expertise: ["إدارة المنتجات", "تصميم واجهة وتجربة المستخدم"], region: "USA" },
-        { id: 3, name: "د. توماس ميلر", title: "مدير هندسي", type: "External", expertise: ["هندسة البرمجيات", "هندسة السحابة"], region: "UK" },
-        { id: 4, name: "فاطمة السيد", title: "نائب رئيس العمليات", type: "Internal", expertise: ["إدارة العمليات", "سلسلة التوريد والخدمات اللوجستية"], region: "GCC" },
-        { id: 5, name: "مايكل تشانغ", title: "كبير مهندسي الأمن", type: "External", expertise: ["الأمن السيبراني", "هندسة ديف أوبس"], region: "USA" },
-        { id: 6, name: "نور الهدى", title: "مديرة التسويق", type: "Internal", expertise: ["التسويق الرقمي", "العلاقات العامة"], region: "GCC" },
-        { id: 7, name: "ديفيد أوكونور", title: "المدير المالي", type: "External", expertise: ["التحليل المالي", "الصيرفة الاستثمارية"], region: "UK" },
-        { id: 8, name: "ليلى منصور", title: "رئيسة الموارد البشرية", type: "Internal", expertise: ["الموارد البشرية", "نجاح العملاء"], region: "GCC" },
-        { id: 9, name: "جيمس ويلسون", title: "كبير المهندسين المعماريين", type: "External", expertise: ["الهندسة المعمارية", "الهندسة المدنية"], region: "USA" },
-        { id: 10, name: "د. أميرة طارق", title: "المدير الطبي التنفيذي", type: "Internal", expertise: ["الطب", "إدارة الرعاية الصحية"], region: "GCC" },
-        { id: 11, name: "كينجي ساتو", title: "مهندس بلوك تشين", type: "External", expertise: ["هندسة البلوك تشين", "هندسة البرمجيات"], region: "Japan" },
-        { id: 12, name: "عمر راشد", title: "مدير التجارة الإلكترونية", type: "Internal", expertise: ["التجارة الإلكترونية", "إدارة التجزئة"], region: "GCC" },
-        { id: 13, name: "صوفيا مارتينيز", title: "المديرة الإبداعية", type: "External", expertise: ["التصميم الجرافيكي", "صناعة المحتوى"], region: "USA" },
-        { id: 14, name: "علي حسن", title: "المستشار القانوني الرئيسي", type: "Internal", expertise: ["المحاماة", "تحليل الأعمال"], region: "GCC" }
+        { id: 1, name: "أحمد الفارسي", title: "عالم بيانات أول", type: "Internal", expertise: ["علوم البيانات", "الذكاء الاصطناعي"], region: "GCC", image: "https://randomuser.me/api/portraits/men/32.jpg" },
+        { id: 2, name: "سارة جينكينز", title: "مدير منتجات رئيسي", type: "External", expertise: ["إدارة المنتجات", "تصميم واجهة وتجربة المستخدم"], region: "USA", image: "https://randomuser.me/api/portraits/women/44.jpg" },
+        { id: 3, name: "د. توماس ميلر", title: "مدير هندسي", type: "External", expertise: ["هندسة البرمجيات", "هندسة السحابة"], region: "UK", image: "https://randomuser.me/api/portraits/men/78.jpg" },
+        { id: 4, name: "فاطمة السيد", title: "نائب رئيس العمليات", type: "Internal", expertise: ["إدارة العمليات", "سلسلة التوريد والخدمات اللوجستية"], region: "GCC", image: "https://randomuser.me/api/portraits/women/68.jpg" },
+        { id: 5, name: "مايكل تشانغ", title: "كبير مهندسي الأمن", type: "External", expertise: ["الأمن السيبراني", "هندسة ديف أوبس"], region: "USA", image: "https://randomuser.me/api/portraits/men/55.jpg" },
+        { id: 6, name: "نور الهدى", title: "مديرة التسويق", type: "Internal", expertise: ["التسويق الرقمي", "العلاقات العامة"], region: "GCC", image: "https://randomuser.me/api/portraits/women/24.jpg" },
+        { id: 7, name: "ديفيد أوكونور", title: "المدير المالي", type: "External", expertise: ["التحليل المالي", "الصيرفة الاستثمارية"], region: "UK", image: "https://randomuser.me/api/portraits/men/15.jpg" },
+        { id: 8, name: "ليلى منصور", title: "رئيسة الموارد البشرية", type: "Internal", expertise: ["الموارد البشرية", "نجاح العملاء"], region: "GCC", image: "https://randomuser.me/api/portraits/women/33.jpg" },
+        { id: 9, name: "جيمس ويلسون", title: "كبير المهندسين المعماريين", type: "External", expertise: ["الهندسة المعمارية", "الهندسة المدنية"], region: "USA", image: "https://randomuser.me/api/portraits/men/41.jpg" },
+        { id: 10, name: "د. أميرة طارق", title: "المدير الطبي التنفيذي", type: "Internal", expertise: ["الطب", "إدارة الرعاية الصحية"], region: "GCC", image: "https://randomuser.me/api/portraits/women/59.jpg" },
+        { id: 11, name: "كينجي ساتو", title: "مهندس بلوك تشين", type: "External", expertise: ["هندسة البلوك تشين", "هندسة البرمجيات"], region: "Japan", image: "https://randomuser.me/api/portraits/men/60.jpg" },
+        { id: 12, name: "عمر راشد", title: "مدير التجارة الإلكترونية", type: "Internal", expertise: ["التجارة الإلكترونية", "إدارة التجزئة"], region: "GCC", image: "https://randomuser.me/api/portraits/men/22.jpg" },
+        { id: 13, name: "صوفيا مارتينيز", title: "المديرة الإبداعية", type: "External", expertise: ["التصميم الجرافيكي", "صناعة المحتوى"], region: "USA", image: "https://randomuser.me/api/portraits/women/12.jpg" },
+        { id: 14, name: "علي حسن", title: "المستشار القانوني الرئيسي", type: "Internal", expertise: ["المحاماة", "تحليل الأعمال"], region: "GCC", image: "https://randomuser.me/api/portraits/men/82.jpg" }
     ]
 };
 
@@ -309,7 +309,7 @@ function loadMentors(filterText = '') {
         
         div.innerHTML = `
             <div class="flex items-center gap-4">
-                <img src="https://i.pravatar.cc/150?u=${m.id + m.name}" alt="${m.name}" class="w-12 h-12 rounded-full object-cover border border-gray-200 shadow-sm">
+                <img src="${m.image}" alt="${m.name}" class="w-12 h-12 rounded-full object-cover border border-gray-200 shadow-sm">
                 <div>
                     <h4 class="font-bold text-gray-900">${m.name} <span class="text-xs font-normal ml-2 mr-2 px-2 py-0.5 rounded ${typeClass}">${typeText}</span></h4>
                     <p class="text-sm text-gray-600">${m.title} | ${m.region}</p>
