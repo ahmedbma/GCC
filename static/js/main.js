@@ -308,12 +308,15 @@ function loadMentors(filterText = '') {
         div.className = 'flex items-center justify-between p-4 border rounded hover:bg-gray-50 transition';
         
         div.innerHTML = `
-            <div>
-                <h4 class="font-bold text-gray-900">${m.name} <span class="text-xs font-normal ml-2 mr-2 px-2 py-0.5 rounded ${typeClass}">${typeText}</span></h4>
-                <p class="text-sm text-gray-600">${m.title} | ${m.region}</p>
-                <p class="text-xs text-gray-500 mt-1">Expertise: ${m.expertise.join(', ')}</p>
+            <div class="flex items-center gap-4">
+                <img src="https://i.pravatar.cc/150?u=${m.id + m.name}" alt="${m.name}" class="w-12 h-12 rounded-full object-cover border border-gray-200 shadow-sm">
+                <div>
+                    <h4 class="font-bold text-gray-900">${m.name} <span class="text-xs font-normal ml-2 mr-2 px-2 py-0.5 rounded ${typeClass}">${typeText}</span></h4>
+                    <p class="text-sm text-gray-600">${m.title} | ${m.region}</p>
+                    <p class="text-xs text-gray-500 mt-1">Expertise: ${m.expertise.join(', ')}</p>
+                </div>
             </div>
-            <button class="px-4 py-2 bg-green-600 text-white rounded text-sm hover:bg-green-700">Connect</button>
+            <button class="px-4 py-2 bg-green-600 text-white rounded text-sm hover:bg-green-700 shadow-sm">Connect</button>
         `;
         container.appendChild(div);
     });
